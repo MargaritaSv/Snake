@@ -25,7 +25,6 @@ namespace Snake_Console
             Random numberGenerator = new Random();
             Position food = new Position(numberGenerator.Next(0, Console.WindowHeight), numberGenerator.Next(0, Console.WindowWidth));
 
-
             Queue<Position> snakeElements = new Queue<Position>();
 
             for (int i = 0; i <= 5; i++)
@@ -65,10 +64,22 @@ namespace Snake_Console
                 }
 
                 Position snakeHead = snakeElements.Last();
-                snakeElements.Dequeue();
+                //                snakeElements.Dequeue();
 
                 Position nextDirection = directions[currDirection];
                 Position snakeNewHead = new Position(snakeHead.X + nextDirection.X, snakeHead.Y + nextDirection.Y);
+
+
+                if (snakeNewHead.X == food.X && snakeNewHead.Y == food.Y)
+                {
+                    food = new Position(numberGenerator.Next(0, Console.WindowHeight), numberGenerator.Next(0, Console.WindowWidth));
+
+                    //TODO: snake eat the food
+                }
+                else
+                {
+                    snakeElements.Dequeue();
+                }
 
                 snakeElements.Enqueue(snakeNewHead);
 

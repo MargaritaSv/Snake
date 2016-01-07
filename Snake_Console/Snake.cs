@@ -176,6 +176,19 @@ namespace Snake_Console
                     Console.Write('@');
 
                     sleepTime--;
+
+                    Position obstacle = new Position();
+                    do
+                    {
+                        obstacle = new Position(numberGenerator.Next(0, Console.WindowHeight), numberGenerator.Next(0, Console.WindowWidth));
+
+                    } while (snakeElements.Contains(obstacle) || obstacles.Contains(obstacle) || (food.Y != obstacle.Y && food.X != obstacle.X));
+
+                    obstacles.Add(obstacle);
+                    Console.SetCursorPosition(obstacle.Y, obstacle.X);
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write("!");
+
                 }
                 else
                 {

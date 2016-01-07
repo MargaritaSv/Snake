@@ -31,6 +31,21 @@ namespace Snake_Console
 
             Console.BufferHeight = Console.WindowHeight; //fix the problem with snake out from console
 
+            List<Position> obstacles = new List<Position>()
+            {
+                new Position(12,12),
+                new Position(14,40),
+                new Position(7,7)
+            };
+
+            foreach (Position element in obstacles)
+            {
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.SetCursorPosition(element.Y, element.X);
+                Console.Write("!");
+            }
+
+
             Random numberGenerator = new Random();
             Position food = new Position(numberGenerator.Next(0, Console.WindowHeight), numberGenerator.Next(0, Console.WindowWidth));
 
@@ -122,7 +137,7 @@ namespace Snake_Console
                                     return;
                                 }
                                 */
-                if (snakeElements.Contains(snakeNewHead))
+                if (snakeElements.Contains(snakeNewHead) || obstacles.Contains(snakeNewHead))
                 {
                     Console.SetCursorPosition(0, 0);
                     Console.WriteLine("Game over!"); //TODO: middle position
@@ -181,7 +196,7 @@ namespace Snake_Console
                     {
                         food = new Position(numberGenerator.Next(0, Console.WindowHeight), numberGenerator.Next(0, Console.WindowWidth));
 
-                    } while (snakeElements.Contains(food));
+                    } while (snakeElements.Contains(food) || obstacles.Contains(food));
 
                     lastFoodTime = Environment.TickCount;
                 }

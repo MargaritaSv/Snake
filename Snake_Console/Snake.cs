@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Snake_Console
@@ -31,26 +32,31 @@ namespace Snake_Console
 
             while (true)
             {
-                ConsoleKeyInfo userInput = Console.ReadKey();
 
-                if (userInput.Key == ConsoleKey.RightArrow)
+                if (Console.KeyAvailable)
                 {
-                    currDirection = 0;
-                }
 
-                if (userInput.Key == ConsoleKey.LeftArrow)
-                {
-                    currDirection = 1;
-                }
+                    ConsoleKeyInfo userInput = Console.ReadKey();
 
-                if (userInput.Key == ConsoleKey.DownArrow)
-                {
-                    currDirection = 2;
-                }
+                    if (userInput.Key == ConsoleKey.RightArrow)
+                    {
+                        currDirection = 0;
+                    }
 
-                if (userInput.Key == ConsoleKey.UpArrow)
-                {
-                    currDirection = 3;
+                    if (userInput.Key == ConsoleKey.LeftArrow)
+                    {
+                        currDirection = 1;
+                    }
+
+                    if (userInput.Key == ConsoleKey.DownArrow)
+                    {
+                        currDirection = 2;
+                    }
+
+                    if (userInput.Key == ConsoleKey.UpArrow)
+                    {
+                        currDirection = 3;
+                    }
                 }
 
                 Position snakeHead = snakeElements.Last();
@@ -65,11 +71,11 @@ namespace Snake_Console
 
                 foreach (Position position in snakeElements)
                 {
-                    Console.SetCursorPosition(position.Y,position.X);
+                    Console.SetCursorPosition(position.Y, position.X);
                     Console.Write("*");
                 }
 
-                
+                Thread.Sleep(100);
             }
         }
     }

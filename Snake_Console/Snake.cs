@@ -16,7 +16,7 @@ namespace Snake_Console
             byte down = 2;
             byte up = 3;
 
-            int sleepTime = 100;
+            double sleepTime = 100;
 
             Position[] directions = new Position[]
                 {
@@ -105,32 +105,50 @@ namespace Snake_Console
                 }
 
                 snakeElements.Enqueue(snakeNewHead);
+                Console.SetCursorPosition(snakeNewHead.Y, snakeNewHead.X);
+                Console.Write("*");
+
+                Console.SetCursorPosition(food.Y, food.X);
+                Console.Write('@');
 
                 if (snakeNewHead.X == food.X && snakeNewHead.Y == food.Y)
                 {
                     //feeding the snake
-                    food = new Position(numberGenerator.Next(0, Console.WindowHeight), numberGenerator.Next(0, Console.WindowWidth));
+                    //todo:We create food up up ...
+                    //food not creat on snake body
+                    do
+                    {
+                        food = new Position(numberGenerator.Next(0, Console.WindowHeight), numberGenerator.Next(0, Console.WindowWidth));
+
+                    } while (snakeElements.Contains(food));
+
+                    Console.SetCursorPosition(food.Y, food.X);
+                    Console.Write('@');
+
                     sleepTime--;
 
                 }
                 else
                 {
                     //move
-                    snakeElements.Dequeue();
+                    Position last = snakeElements.Dequeue();
+                    Console.SetCursorPosition(last.Y, last.X);//col,row
+                    Console.Write(" ");
                 }
 
-                Console.Clear();
+                //  Console.Clear();
+                /*
+                  foreach (Position position in snakeElements)
+                  {
+                      Console.SetCursorPosition(position.Y, position.X);
+                      Console.Write("*");
+                  }
 
-                foreach (Position position in snakeElements)
-                {
-                    Console.SetCursorPosition(position.Y, position.X);
-                    Console.Write("*");
-                }
 
-                Console.SetCursorPosition(food.Y, food.X);
-                Console.WriteLine('@');
+                  */
+                sleepTime -= 0.01;
 
-                Thread.Sleep(sleepTime);
+                Thread.Sleep((int)sleepTime);
             }
         }
     }

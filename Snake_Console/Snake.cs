@@ -71,8 +71,15 @@ namespace Snake_Console
                 if (snakeNewHead.X < 0 || snakeNewHead.Y < 0 || snakeNewHead.X >= Console.WindowHeight || snakeNewHead.Y >= Console.WindowWidth)
                 {
                     Console.SetCursorPosition(0, 0);
-                    Console.WriteLine("Game over!");
+                    Console.WriteLine("Game over!"); //TODO: middle position
+                    Console.WriteLine("Your points are {0}", (snakeElements.Count - 6) * 100);
                     return;
+                }
+
+                if (snakeElements.Contains(snakeNewHead))
+                {
+                    Console.WriteLine("Your snake cannot through his body. ");
+                    break;
                 }
 
                 snakeElements.Enqueue(snakeNewHead);
@@ -95,6 +102,7 @@ namespace Snake_Console
                     Console.Write("*");
                 }
 
+               
                 Console.SetCursorPosition(food.Y, food.X);
                 Console.WriteLine('@');
 

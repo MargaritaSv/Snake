@@ -61,6 +61,8 @@ namespace Snake_Console
 
                 snakeElements.Enqueue(snakeNewHead);
 
+                Console.Clear();
+
                 foreach (Position position in snakeElements)
                 {
                     Console.SetCursorPosition(position.Y,position.X);

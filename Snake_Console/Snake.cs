@@ -134,16 +134,16 @@ namespace Snake_Console
                 }
 
                 Console.SetCursorPosition(snakeHead.Y, snakeHead.X);
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("*");
 
                 snakeElements.Enqueue(snakeNewHead);
-                Console.SetCursorPosition(snakeNewHead.Y, snakeNewHead.X); //drwa new head
-
+                Console.SetCursorPosition(snakeNewHead.Y, snakeNewHead.X); //draw new head
+                Console.ForegroundColor = ConsoleColor.Green;
                 if (currDirection == right) Console.Write(">");
                 if (currDirection == left) Console.Write("<");
                 if (currDirection == down) Console.Write("v");
                 if (currDirection == up) Console.Write("^");
-
 
                 if (snakeNewHead.X == food.X && snakeNewHead.Y == food.Y)
                 {
@@ -157,6 +157,7 @@ namespace Snake_Console
                     lastFoodTime = Environment.TickCount;
 
                     Console.SetCursorPosition(food.Y, food.X);
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.Write('@');
 
                     sleepTime--;
@@ -186,6 +187,7 @@ namespace Snake_Console
                 }
 
                 Console.SetCursorPosition(food.Y, food.X);
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write('@');
 
                 sleepTime -= 0.01;

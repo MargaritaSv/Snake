@@ -8,8 +8,8 @@ namespace Snake_Console
 {
     struct Position
     {
-        public int X;
-        public int Y;
+        public int X;//row
+        public int Y;//col
 
         public Position(int x,int y)
         {

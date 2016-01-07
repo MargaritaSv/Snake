@@ -52,6 +52,22 @@ namespace Snake_Console
                 {
                     currDirection = 3;
                 }
+
+                Position snakeHead = snakeElements.Last();
+                snakeElements.Dequeue();
+
+                Position nextDirection = directions[currDirection];
+                Position snakeNewHead = new Position(snakeHead.X + nextDirection.X, snakeHead.Y + nextDirection.Y);
+
+                snakeElements.Enqueue(snakeNewHead);
+
+                foreach (Position position in snakeElements)
+                {
+                    Console.SetCursorPosition(position.Y,position.X);
+                    Console.Write("*");
+                }
+
+                
             }
         }
     }

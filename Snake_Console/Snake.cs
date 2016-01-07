@@ -20,6 +20,11 @@ namespace Snake_Console
                     new Position(-1,0)//up
                 };
 
+            Console.BufferHeight = Console.WindowHeight; //fix the problem with snake out from console
+
+            Random numberGenerator = new Random();
+            Position food = new Position(numberGenerator.Next(0, Console.WindowHeight), numberGenerator.Next(0, Console.WindowWidth));
+
 
             Queue<Position> snakeElements = new Queue<Position>();
 
@@ -74,6 +79,9 @@ namespace Snake_Console
                     Console.SetCursorPosition(position.Y, position.X);
                     Console.Write("*");
                 }
+
+                Console.SetCursorPosition(food.Y, food.X);
+                Console.WriteLine('@');
 
                 Thread.Sleep(100);
             }

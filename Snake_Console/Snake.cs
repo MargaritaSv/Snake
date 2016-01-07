@@ -64,24 +64,28 @@ namespace Snake_Console
                 }
 
                 Position snakeHead = snakeElements.Last();
-                //                snakeElements.Dequeue();
 
                 Position nextDirection = directions[currDirection];
                 Position snakeNewHead = new Position(snakeHead.X + nextDirection.X, snakeHead.Y + nextDirection.Y);
 
+                if (snakeNewHead.X < 0 || snakeNewHead.Y < 0 || snakeNewHead.X >= Console.WindowHeight || snakeNewHead.Y >= Console.WindowWidth)
+                {
+                    Console.SetCursorPosition(0, 0);
+                    Console.WriteLine("Game over!");
+                    return;
+                }
+
+                snakeElements.Enqueue(snakeNewHead);
 
                 if (snakeNewHead.X == food.X && snakeNewHead.Y == food.Y)
                 {
                     food = new Position(numberGenerator.Next(0, Console.WindowHeight), numberGenerator.Next(0, Console.WindowWidth));
-
-                    //TODO: snake eat the food
                 }
                 else
                 {
                     snakeElements.Dequeue();
                 }
 
-                snakeElements.Enqueue(snakeNewHead);
 
                 Console.Clear();
 

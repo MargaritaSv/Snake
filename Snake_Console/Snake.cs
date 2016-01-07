@@ -17,6 +17,8 @@ namespace Snake_Console
             byte up = 3;
 
             double sleepTime = 100;
+            int lastFoodTime = 0;
+            int foodDissapearTime = 8000; 
 
             Position[] directions = new Position[]
                 {
@@ -108,8 +110,7 @@ namespace Snake_Console
                 Console.SetCursorPosition(snakeNewHead.Y, snakeNewHead.X);
                 Console.Write("*");
 
-                Console.SetCursorPosition(food.Y, food.X);
-                Console.Write('@');
+
 
                 if (snakeNewHead.X == food.X && snakeNewHead.Y == food.Y)
                 {
@@ -121,6 +122,9 @@ namespace Snake_Console
                         food = new Position(numberGenerator.Next(0, Console.WindowHeight), numberGenerator.Next(0, Console.WindowWidth));
 
                     } while (snakeElements.Contains(food));
+
+                    lastFoodTime = Environment.TickCount;
+
 
                     Console.SetCursorPosition(food.Y, food.X);
                     Console.Write('@');
@@ -146,6 +150,24 @@ namespace Snake_Console
 
 
                   */
+
+                if (Environment.TickCount-lastFoodTime>=foodDissapearTime)
+                {
+                    Console.SetCursorPosition(food.Y, food.X);
+                    Console.Write(" ");
+
+                    do
+                    {
+                        food = new Position(numberGenerator.Next(0, Console.WindowHeight), numberGenerator.Next(0, Console.WindowWidth));
+
+                    } while (snakeElements.Contains(food));
+                       lastFoodTime = Environment.TickCount;
+
+                }
+
+                Console.SetCursorPosition(food.Y, food.X);
+                Console.Write('@');
+
                 sleepTime -= 0.01;
 
                 Thread.Sleep((int)sleepTime);

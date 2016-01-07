@@ -18,7 +18,8 @@ namespace Snake_Console
 
             double sleepTime = 100;
             int lastFoodTime = 0;
-            int foodDissapearTime = 8000; 
+            int foodDissapearTime = 8000;
+            int negativePoints = 0;
 
             Position[] directions = new Position[]
                 {
@@ -44,6 +45,7 @@ namespace Snake_Console
 
             while (true)
             {
+                negativePoints++;//when we move negative points up up 
 
                 if (Console.KeyAvailable)
                 {
@@ -91,14 +93,35 @@ namespace Snake_Console
                 Position nextDirection = directions[currDirection];
                 Position snakeNewHead = new Position(snakeHead.X + nextDirection.X, snakeHead.Y + nextDirection.Y);
 
-                if (snakeNewHead.X < 0 || snakeNewHead.Y < 0 || snakeNewHead.X >= Console.WindowHeight || snakeNewHead.Y >= Console.WindowWidth)
+                if (snakeNewHead.X < 0)
                 {
-                    Console.SetCursorPosition(0, 0);
-                    Console.WriteLine("Game over!"); //TODO: middle position
-                    Console.WriteLine("Your points are {0}", (snakeElements.Count - 6) * 100);
-                    return;
+                    snakeNewHead.X = Console.WindowHeight - 1;
                 }
 
+                if (snakeNewHead.Y < 0)
+                {
+                    snakeNewHead.Y = Console.WindowWidth - 1;
+                }
+
+                if (snakeNewHead.X >= Console.WindowHeight)
+                {
+                    snakeNewHead.X = 0;
+                }
+
+                if (snakeNewHead.Y >= Console.WindowWidth)
+                {
+                    snakeNewHead.Y = 0;
+                }
+                /*
+                                if (snakeNewHead.X < 0 || snakeNewHead.Y < 0 || snakeNewHead.X >= Console.WindowHeight || snakeNewHead.Y >= Console.WindowWidth)
+                                {
+                                    Console.SetCursorPosition(0, 0);
+                                    Console.WriteLine("Game over!"); //TODO: middle position
+                                    int userPoints = ((snakeElements.Count - 6) * 100) - negativePoints; //TODO:
+                                    Console.WriteLine("Your points are {0}", userPoints);
+                                    return;
+                                }
+                                */
                 if (snakeElements.Contains(snakeNewHead))
                 {
 
@@ -115,8 +138,6 @@ namespace Snake_Console
                 if (snakeNewHead.X == food.X && snakeNewHead.Y == food.Y)
                 {
                     //feeding the snake
-                    //todo:We create food up up ...
-                    //food not creat on snake body
                     do
                     {
                         food = new Position(numberGenerator.Next(0, Console.WindowHeight), numberGenerator.Next(0, Console.WindowWidth));
@@ -125,12 +146,10 @@ namespace Snake_Console
 
                     lastFoodTime = Environment.TickCount;
 
-
                     Console.SetCursorPosition(food.Y, food.X);
                     Console.Write('@');
 
                     sleepTime--;
-
                 }
                 else
                 {
@@ -140,19 +159,10 @@ namespace Snake_Console
                     Console.Write(" ");
                 }
 
-                //  Console.Clear();
-                /*
-                  foreach (Position position in snakeElements)
-                  {
-                      Console.SetCursorPosition(position.Y, position.X);
-                      Console.Write("*");
-                  }
-
-
-                  */
-
-                if (Environment.TickCount-lastFoodTime>=foodDissapearTime)
+                if (Environment.TickCount - lastFoodTime >= foodDissapearTime)
                 {
+                    negativePoints += 50;
+
                     Console.SetCursorPosition(food.Y, food.X);
                     Console.Write(" ");
 
@@ -161,8 +171,8 @@ namespace Snake_Console
                         food = new Position(numberGenerator.Next(0, Console.WindowHeight), numberGenerator.Next(0, Console.WindowWidth));
 
                     } while (snakeElements.Contains(food));
-                       lastFoodTime = Environment.TickCount;
 
+                    lastFoodTime = Environment.TickCount;
                 }
 
                 Console.SetCursorPosition(food.Y, food.X);

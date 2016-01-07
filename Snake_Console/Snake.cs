@@ -11,6 +11,12 @@ namespace Snake_Console
     {
         static void Main()
         {
+            byte right = 0;
+            byte left = 1;
+            byte down = 2;
+            byte up = 3;
+
+            int sleepTime = 100;
 
             Position[] directions = new Position[]
                 {
@@ -32,34 +38,49 @@ namespace Snake_Console
                 snakeElements.Enqueue(new Position(0, i));
             }
 
-            int currDirection = 0;
+            int currDirection = right;
 
             while (true)
             {
 
                 if (Console.KeyAvailable)
                 {
-
                     ConsoleKeyInfo userInput = Console.ReadKey();
 
                     if (userInput.Key == ConsoleKey.RightArrow)
                     {
-                        currDirection = 0;
+
+                        if (currDirection != left)
+                        {
+                            currDirection = right;
+
+                        }
                     }
 
                     if (userInput.Key == ConsoleKey.LeftArrow)
                     {
-                        currDirection = 1;
+                        if (currDirection != right)
+                        {
+                            currDirection = left;
+
+                        }
                     }
 
                     if (userInput.Key == ConsoleKey.DownArrow)
                     {
-                        currDirection = 2;
+                        if (currDirection != up)
+                        {
+                            currDirection = down;
+
+                        }
                     }
 
                     if (userInput.Key == ConsoleKey.UpArrow)
                     {
-                        currDirection = 3;
+                        if (currDirection != down)
+                        {
+                            currDirection = up;
+                        }
                     }
                 }
 
@@ -78,6 +99,7 @@ namespace Snake_Console
 
                 if (snakeElements.Contains(snakeNewHead))
                 {
+
                     Console.WriteLine("Your snake cannot through his body. ");
                     break;
                 }
@@ -86,13 +108,16 @@ namespace Snake_Console
 
                 if (snakeNewHead.X == food.X && snakeNewHead.Y == food.Y)
                 {
+                    //feeding the snake
                     food = new Position(numberGenerator.Next(0, Console.WindowHeight), numberGenerator.Next(0, Console.WindowWidth));
+                    sleepTime--;
+
                 }
                 else
                 {
+                    //move
                     snakeElements.Dequeue();
                 }
-
 
                 Console.Clear();
 
@@ -102,11 +127,10 @@ namespace Snake_Console
                     Console.Write("*");
                 }
 
-               
                 Console.SetCursorPosition(food.Y, food.X);
                 Console.WriteLine('@');
 
-                Thread.Sleep(100);
+                Thread.Sleep(sleepTime);
             }
         }
     }

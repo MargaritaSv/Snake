@@ -124,15 +124,25 @@ namespace Snake_Console
                                 */
                 if (snakeElements.Contains(snakeNewHead))
                 {
-
+                    Console.SetCursorPosition(0, 0);
+                    Console.WriteLine("Game over!"); //TODO: middle position
+                    int userPoints = ((snakeElements.Count - 6) * 100) - negativePoints; //TODO:
+                    userPoints = Math.Max(userPoints, 0);
+                    Console.WriteLine("Your points are {0}", userPoints);
                     Console.WriteLine("Your snake cannot through his body. ");
-                    break;
+                    return;
                 }
 
-                snakeElements.Enqueue(snakeNewHead);
-                Console.SetCursorPosition(snakeNewHead.Y, snakeNewHead.X);
+                Console.SetCursorPosition(snakeHead.Y, snakeHead.X);
                 Console.Write("*");
 
+                snakeElements.Enqueue(snakeNewHead);
+                Console.SetCursorPosition(snakeNewHead.Y, snakeNewHead.X); //drwa new head
+
+                if (currDirection == right) Console.Write(">");
+                if (currDirection == left) Console.Write("<");
+                if (currDirection == down) Console.Write("v");
+                if (currDirection == up) Console.Write("^");
 
 
                 if (snakeNewHead.X == food.X && snakeNewHead.Y == food.Y)

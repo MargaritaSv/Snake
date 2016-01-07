@@ -12,16 +12,12 @@ namespace Snake_Console
         {
             Queue<Position> snakeElements = new Queue<Position>();
 
-            // Position startPotision = new Position(0, 0);
-            // snakeElements.Enqueue(startPotision);
+            for (int i = 0; i <= 5; i++)
+            {
+                snakeElements.Enqueue(new Position(0, i));
 
+            }
 
-            snakeElements.Enqueue(new Position(0, 0));
-            snakeElements.Enqueue(new Position(0, 1));
-            snakeElements.Enqueue(new Position(0, 2));
-            snakeElements.Enqueue(new Position(0, 3));
-            snakeElements.Enqueue(new Position(0, 4));
-            snakeElements.Enqueue(new Position(0, 5));
 
             while (true)
             {

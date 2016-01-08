@@ -11,10 +11,10 @@ namespace Snake_Console
     {
         static void Main()
         {
-            byte right = 0;
-            byte left = 1;
-            byte down = 2;
-            byte up = 3;
+            //byte right = 0;
+            //byte left = 1;
+            //byte down = 2;
+            //byte up = 3;
 
             double sleepTime = 100;
             int lastFoodTime = 0;
@@ -56,12 +56,16 @@ namespace Snake_Console
                 snakeElements.Enqueue(new Position(0, i));
             }
 
-            int currDirection = right;
+            int currDirection = GlobalConstance.Right;
 
             while (true)
             {
                 negativePoints++;//when we move negative points up up 
 
+
+                ///MovingTheSnake.Moved( currDirection);
+                
+                /*
                 if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo userInput = Console.ReadKey();
@@ -102,7 +106,7 @@ namespace Snake_Console
                         }
                     }
                 }
-
+                */
                 Position snakeHead = snakeElements.Last();
 
                 Position nextDirection = directions[currDirection];
@@ -155,10 +159,10 @@ namespace Snake_Console
                 snakeElements.Enqueue(snakeNewHead);
                 Console.SetCursorPosition(snakeNewHead.Y, snakeNewHead.X); //draw new head
                 Console.ForegroundColor = ConsoleColor.Green;
-                if (currDirection == right) Console.Write(">");
-                if (currDirection == left) Console.Write("<");
-                if (currDirection == down) Console.Write("v");
-                if (currDirection == up) Console.Write("^");
+                if (currDirection == GlobalConstance.Right) Console.Write(">");
+                if (currDirection == GlobalConstance.Left) Console.Write("<");
+                if (currDirection == GlobalConstance.Down) Console.Write("v");
+                if (currDirection == GlobalConstance.Up) Console.Write("^");
 
                 if (snakeNewHead.X == food.X && snakeNewHead.Y == food.Y)
                 {

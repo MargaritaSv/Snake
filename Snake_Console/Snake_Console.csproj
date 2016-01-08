@@ -43,6 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IDrawable.cs" />
+    <Compile Include="Contracts\IEngine.cs" />
+    <Compile Include="Contracts\IMovable.cs" />
+    <Compile Include="Contracts\IWriter.cs" />
+    <Compile Include="Draw.cs" />
+    <Compile Include="Engine.cs" />
+    <Compile Include="GameException.cs" />
     <Compile Include="GlobalConstance.cs" />
     <Compile Include="MovingTheSnake.cs" />
     <Compile Include="Position.cs" />

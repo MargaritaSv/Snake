@@ -11,10 +11,7 @@ namespace Snake_Console
     {
         static void Main()
         {
-            //byte right = 0;
-            //byte left = 1;
-            //byte down = 2;
-            //byte up = 3;
+          
 
             double sleepTime = 100;
             int lastFoodTime = 0;
@@ -31,14 +28,14 @@ namespace Snake_Console
 
             Console.BufferHeight = Console.WindowHeight; //fix the problem with snake out from console
 
-            List<Position> obstacles = new List<Position>()
+            List<Position> obstacles = new List<Position>()       //poziciq na el-te
             {
                 new Position(12,12),
                 new Position(14,40),
                 new Position(7,7)
             };
 
-            foreach (Position element in obstacles)
+            foreach (Position element in obstacles)               //broi,mqsto,cvqt
             {
                 Console.ForegroundColor = ConsoleColor.Gray;
                 Console.SetCursorPosition(element.Y, element.X);
@@ -46,17 +43,17 @@ namespace Snake_Console
             }
 
 
-            Random numberGenerator = new Random();
+            Random numberGenerator = new Random();                 //rnd
             Position food = new Position(numberGenerator.Next(0, Console.WindowHeight), numberGenerator.Next(0, Console.WindowWidth));
 
-            Queue<Position> snakeElements = new Queue<Position>();
+            Queue<Position> snakeElements = new Queue<Position>();                //pazi opa6kata 
 
-            for (int i = 0; i <= 5; i++)
+            for (int i = 0; i <= 5; i++)                             //dobavqme el-i kum opa6kata otpred
             {
                 snakeElements.Enqueue(new Position(0, i));
             }
 
-            int currDirection = GlobalConstance.Right;
+            int currDirection = GlobalConstance.Right;          //posoka po default 
 
             while (true)
             {
@@ -64,7 +61,7 @@ namespace Snake_Console
 
 
                 ///MovingTheSnake.Moved( currDirection);
-                
+
                 /*
                 if (Console.KeyAvailable)
                 {
@@ -107,7 +104,9 @@ namespace Snake_Console
                     }
                 }
                 */
-                Position snakeHead = snakeElements.Last();
+
+
+                Position snakeHead = snakeElements.Last();                         //vzimame posledniq el t.e. glavata
 
                 Position nextDirection = directions[currDirection];
                 Position snakeNewHead = new Position(snakeHead.X + nextDirection.X, snakeHead.Y + nextDirection.Y);
@@ -157,12 +156,7 @@ namespace Snake_Console
                 Console.Write("*");
 
                 snakeElements.Enqueue(snakeNewHead);
-                Console.SetCursorPosition(snakeNewHead.Y, snakeNewHead.X); //draw new head
-                Console.ForegroundColor = ConsoleColor.Green;
-                if (currDirection == GlobalConstance.Right) Console.Write(">");
-                if (currDirection == GlobalConstance.Left) Console.Write("<");
-                if (currDirection == GlobalConstance.Down) Console.Write("v");
-                if (currDirection == GlobalConstance.Up) Console.Write("^");
+               Draw.DrawNewHead(currDirection, snakeNewHead);
 
                 if (snakeNewHead.X == food.X && snakeNewHead.Y == food.Y)
                 {
@@ -181,7 +175,7 @@ namespace Snake_Console
 
                     sleepTime--;
 
-                    Position obstacle = new Position();
+                    Position obstacle;
                     do
                     {
                         obstacle = new Position(numberGenerator.Next(0, Console.WindowHeight), numberGenerator.Next(0, Console.WindowWidth));
@@ -227,5 +221,7 @@ namespace Snake_Console
                 Thread.Sleep((int)sleepTime);
             }
         }
+
+      
     }
 }

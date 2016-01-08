@@ -52,6 +52,11 @@
     <Compile Include="GameException.cs" />
     <Compile Include="GlobalConstance.cs" />
     <Compile Include="MovingTheSnake.cs" />
+    <Compile Include="Objects\Apple.cs" />
+    <Compile Include="Objects\Object.cs" />
+    <Compile Include="Objects\Obstacles.cs" />
+    <Compile Include="Objects\Sssnake.cs" />
+    <Compile Include="Pool.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Snake.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

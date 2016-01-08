@@ -46,12 +46,7 @@ namespace Snake_Console
             Random numberGenerator = new Random();                 //rnd
             Position food = new Position(numberGenerator.Next(0, Console.WindowHeight), numberGenerator.Next(0, Console.WindowWidth));
 
-            Queue<Position> snakeElements = new Queue<Position>();                //pazi opa6kata 
-
-            for (int i = 0; i <= 5; i++)                             //dobavqme el-i kum opa6kata otpred
-            {
-                snakeElements.Enqueue(new Position(0, i));
-            }
+            Draw.QueueSnake();
 
             int currDirection = GlobalConstance.Right;          //posoka po default 
 
@@ -62,49 +57,7 @@ namespace Snake_Console
 
                 ///MovingTheSnake.Moved( currDirection);
 
-                /*
-                if (Console.KeyAvailable)
-                {
-                    ConsoleKeyInfo userInput = Console.ReadKey();
-
-                    if (userInput.Key == ConsoleKey.RightArrow)
-                    {
-
-                        if (currDirection != left)
-                        {
-                            currDirection = right;
-
-                        }
-                    }
-
-                    if (userInput.Key == ConsoleKey.LeftArrow)
-                    {
-                        if (currDirection != right)
-                        {
-                            currDirection = left;
-
-                        }
-                    }
-
-                    if (userInput.Key == ConsoleKey.DownArrow)
-                    {
-                        if (currDirection != up)
-                        {
-                            currDirection = down;
-
-                        }
-                    }
-
-                    if (userInput.Key == ConsoleKey.UpArrow)
-                    {
-                        if (currDirection != down)
-                        {
-                            currDirection = up;
-                        }
-                    }
-                }
-                */
-
+               
 
                 Position snakeHead = snakeElements.Last();                         //vzimame posledniq el t.e. glavata
 
@@ -155,7 +108,7 @@ namespace Snake_Console
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("*");
 
-                snakeElements.Enqueue(snakeNewHead);
+              //  snakeElements.Enqueue(snakeNewHead);
                Draw.DrawNewHead(currDirection, snakeNewHead);
 
                 if (snakeNewHead.X == food.X && snakeNewHead.Y == food.Y)

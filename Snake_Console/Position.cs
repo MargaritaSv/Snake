@@ -9,7 +9,6 @@ namespace Snake_Console
 {
     public class Position : IMovable
     {
-
         private int x;
         private int y;
 
@@ -22,13 +21,13 @@ namespace Snake_Console
         public int X
         {
             get { return this.x; }
-            set { x = value; }
+            set { this.x = value; }
         }
 
         public int Y
         {
             get { return this.y; }
-            set { y = value; }
+            set { this.y = value; }
         }
     }
 }

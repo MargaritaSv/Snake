@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snake_Console", "Snake_Console\Snake_Console.csproj", "{FBC64768-E115-4087-BD38-74B3154B7C41}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Snake_Without_OOP", "Snake_Without_OOP", "{A242BCE5-F1FA-4731-9F6B-E4DAFD64F140}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snake", "Snake\Snake.csproj", "{6A0C6ED7-0CC9-4EF4-9237-1D4CCD5E530D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +19,15 @@ Global
 		{FBC64768-E115-4087-BD38-74B3154B7C41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBC64768-E115-4087-BD38-74B3154B7C41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBC64768-E115-4087-BD38-74B3154B7C41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A0C6ED7-0CC9-4EF4-9237-1D4CCD5E530D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A0C6ED7-0CC9-4EF4-9237-1D4CCD5E530D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A0C6ED7-0CC9-4EF4-9237-1D4CCD5E530D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A0C6ED7-0CC9-4EF4-9237-1D4CCD5E530D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6A0C6ED7-0CC9-4EF4-9237-1D4CCD5E530D} = {A242BCE5-F1FA-4731-9F6B-E4DAFD64F140}
 	EndGlobalSection
 EndGlobal

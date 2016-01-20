@@ -59,7 +59,7 @@ namespace Snake_Console
 
             while (true)
             {
-                negativePoints++;//when we move negative points up up 
+               negativePoints++;//when we move negative points up up 
 
                 if (Console.KeyAvailable)
                 {

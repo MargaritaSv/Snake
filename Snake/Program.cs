@@ -106,7 +106,7 @@ namespace Snake_Console
 
                 Position nextDirection = directions[currDirection];
                 Position snakeNewHead = new Position(snakeHead.X + nextDirection.X, snakeHead.Y + nextDirection.Y);
-
+                /*
                 if (snakeNewHead.X < 0)
                 {
                     snakeNewHead.X = Console.WindowHeight - 1;
@@ -126,7 +126,8 @@ namespace Snake_Console
                 {
                     snakeNewHead.Y = 0;
                 }
-                /*
+                */
+              //  /*
                                 if (snakeNewHead.X < 0 || snakeNewHead.Y < 0 || snakeNewHead.X >= Console.WindowHeight || snakeNewHead.Y >= Console.WindowWidth)
                                 {
                                     Console.SetCursorPosition(0, 0);
@@ -135,7 +136,7 @@ namespace Snake_Console
                                     Console.WriteLine("Your points are {0}", userPoints);
                                     return;
                                 }
-                                */
+                               // */
                 if (snakeElements.Contains(snakeNewHead) || obstacles.Contains(snakeNewHead))
                 {
                     Console.SetCursorPosition(0, 0);
